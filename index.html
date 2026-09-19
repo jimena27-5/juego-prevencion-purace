@@ -1,0 +1,171 @@
+<!DOCTYPE html> 
+<html lang="es"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Alerta Naranja - Volcán Puracé</title> 
+    <link rel="stylesheet" href="css/estilo.css"> 
+</head> 
+ 
+<body> 
+ 
+    <main class="caratula"> 
+ 
+        <img 
+            src="img/caratula-purace.png" 
+            alt="Volcán Puracé - Alerta Naranja" 
+            class="imagen-caratula" 
+        > 
+ 
+        <div class="zona-carga"> 
+ 
+            <div class="texto-carga"> 
+                <span id="texto-mision">PREPARANDO MISIÓN...</span> 
+                <span id="porcentaje">0%</span> 
+            </div> 
+ 
+            <div class="barra"> 
+                <div id="progreso" class="progreso"></div> 
+            </div> 
+ 
+        </div> 
+ 
+        <button id="entrar" class="boton-entrar" disabled> 
+            ENTRAR AL JUEGO 
+            <span>›</span> 
+        </button> 
+ 
+        <!-- CRÉDITOS --> 
+        <div 
+            class="creditos" 
+            style=" 
+                position:relative; 
+                z-index:10; 
+                margin-top:14px; 
+                text-align:center; 
+                color:white; 
+                font-family:Arial,Helvetica,sans-serif; 
+                text-shadow:0 3px 7px #000, 0 0 4px #000; 
+            " 
+        > 
+            <div 
+                style=" 
+                    font-size:10px; 
+                    font-weight:900; 
+                    letter-spacing:2px; 
+                    margin-bottom:4px; 
+                " 
+            > 
+                REALIZADO POR 
+            </div> 
+ 
+            <div 
+                style=" 
+                    font-size:14px; 
+                    font-weight:900; 
+                    margin-bottom:5px; 
+                    text-shadow:0 3px 7px #000, 0 0 5px #000; 
+                " 
+            > 
+                Jimena Fernández 
+            </div> 
+ 
+            <div 
+                style=" 
+                    font-size:18px; 
+                    font-weight:900; 
+                    margin-bottom:5px; 
+                    color:#ffffff; 
+                    text-shadow:0 3px 8px #000, 0 0 6px #000; 
+                " 
+            > 
+                Grado 10.º A 
+            </div> 
+ 
+            <div 
+                style=" 
+                    font-size:17px; 
+                    font-weight:900; 
+                    color:#ffffff; 
+                    margin-bottom:5px; 
+                    text-shadow:0 3px 8px #000, 0 0 6px #000; 
+                " 
+            > 
+                Dinamizador: Álvaro Stid Bolaños Vásquez 
+            </div> 
+
+            <div 
+                style=" 
+                    font-size:16px; 
+                    font-weight:900; 
+                    color:#ffffff; 
+                    text-shadow:0 3px 8px #000, 0 0 6px #000; 
+                " 
+            > 
+                Septiembre de 2026 
+            </div>
+        </div> 
+ 
+ 
+        <!-- LOGO DE LA INSTITUCIÓN --> 
+        <img 
+            src="img/logo-institucion.png" 
+            alt="Logo de la institución" 
+            style=" 
+                position:relative; 
+                z-index:10; 
+                display:block; 
+                width:90px; 
+                height:auto; 
+                margin:10px auto 0; 
+                object-fit:contain; 
+                filter:drop-shadow(0 3px 5px #000); 
+            " 
+        > 
+ 
+ 
+        <div id="mensaje-final" class="mensaje-final"> 
+            INFORMACIÓN EDUCATIVA DE PREVENCIÓN DEL RIESGO VOLCÁNICO 
+        </div> 
+ 
+    </main> 
+ 
+    <script> 
+ 
+        let porcentaje = 0; 
+ 
+        const progreso = document.getElementById("progreso"); 
+        const numero = document.getElementById("porcentaje"); 
+        const boton = document.getElementById("entrar"); 
+        const texto = document.getElementById("texto-mision"); 
+        const mensaje = document.getElementById("mensaje-final"); 
+ 
+        const carga = setInterval(() => { 
+ 
+            porcentaje++; 
+ 
+            progreso.style.width = porcentaje + "%"; 
+            numero.textContent = porcentaje + "%"; 
+ 
+            if (porcentaje >= 100) { 
+ 
+                clearInterval(carga); 
+ 
+                texto.textContent = "MISIÓN LISTA"; 
+                mensaje.textContent = "LA PREVENCIÓN TAMBIÉN SALVA VIDAS"; 
+ 
+                boton.disabled = false; 
+                boton.classList.add("listo"); 
+ 
+            } 
+ 
+        }, 35); 
+ 
+        boton.addEventListener("click", () => { 
+            window.location.href = "menu.html"; 
+        }); 
+ 
+    </script> 
+ 
+</body> 
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Huyendo a un lugar seguro</title>
+
+    <link rel="stylesheet" href="css/huida.css">
+</head>
+
+<body>
+
+<div id="inicio" class="pantalla-inicio">
+
+    <img
+        src="img/huida-purace.png"
+        class="fondo-inicio"
+        alt="Escenario de evacuación"
+    >
+
+    <div class="velo"></div>
+
+    <div class="panel-inicio">
+
+        <div class="etiqueta">
+            JUEGO 2
+        </div>
+
+        <h1>
+            HUYENDO A UN LUGAR SEGURO
+        </h1>
+
+        <p>
+            Avanza por la ruta de evacuación y reúne los suministros necesarios.
+        </p>
+
+        <button
+            id="btnIniciar"
+            class="btn-principal"
+        >
+            INICIAR JUEGO
+        </button>
+
+    </div>
+</div>
+
+
+<main
+    id="juego"
+    class="juego oculto"
+>
+
+    <!-- CARRETERA Y ENTORNO -->
+    <canvas id="runner"></canvas>
+
+    <!-- PERSONAJE 3D -->
+    <canvas
+        id="personaje3D"
+        style="
+            position:absolute;
+            inset:0;
+            width:100%;
+            height:100%;
+            pointer-events:none;
+            z-index:10;
+        "
+    ></canvas>
+
+
+    <!-- HUD -->
+
+    <header class="hud">
+
+        <div class="estadistica">
+            <small>VIDAS</small>
+            <strong id="vidas">3</strong>
+        </div>
+
+        <div class="estadistica">
+            <small>TIEMPO</small>
+            <strong id="tiempo">06:00</strong>
+        </div>
+
+        <div class="estadistica">
+            <small>PUNTOS</small>
+            <strong id="puntos">0</strong>
+        </div>
+
+        <div class="estadistica">
+            <small>MONEDAS</small>
+            <strong id="monedas">0</strong>
+        </div>
+
+    </header>
+
+
+    <!-- RUTA -->
+
+    <section class="ruta">
+
+        <div class="ruta-cabecera">
+
+            <b>
+                RUTA DE EVACUACIÓN
+            </b>
+
+            <strong id="porcentaje">
+                0%
+            </strong>
+
+        </div>
+
+        <div class="ruta-barra">
+
+            <div id="rutaProgreso"></div>
+
+            <span id="marcadorRuta"></span>
+
+        </div>
+
+        <div class="ruta-extremos">
+
+            <span>
+                INICIO
+            </span>
+
+            <span>
+                ZONA SEGURA
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <button
+        id="btnPausa"
+        class="btn-hud"
+    >
+        PAUSA
+    </button>
+
+
+    <button
+        id="btnLista"
+        class="btn-hud lista-btn"
+    >
+        VER LISTA
+    </button>
+
+
+    <!-- LISTA -->
+
+    <aside
+        id="listaPanel"
+        class="lista-panel oculto"
+    >
+
+        <button
+            id="cerrarLista"
+            class="cerrar"
+        >
+            X
+        </button>
+
+        <h2>
+            SUMINISTROS
+        </h2>
+
+        <p class="subtitulo">
+            OBJETIVOS DE EVACUACIÓN
+        </p>
+
+        <div id="listaItems"></div>
+
+        <div class="lista-pie">
+            Recolecta los elementos marcados como esenciales.
+        </div>
+
+    </aside>
+
+
+    <div
+        id="mensaje"
+        class="mensaje"
+    ></div>
+
+
+    <!-- CONTROLES -->
+
+    <div class="controles">
+
+        <div
+            id="joystick"
+            class="joystick"
+        >
+            <div id="stick"></div>
+        </div>
+
+
+        <div class="acciones">
+
+            <button
+                id="btnIzq"
+                class="control"
+            >
+                IZQ
+            </button>
+
+            <button
+                id="btnSaltar"
+                class="control grande"
+            >
+                SALTAR
+            </button>
+
+            <button
+                id="btnAgachar"
+                class="control"
+            >
+                AGACHARSE
+            </button>
+
+            <button
+                id="btnCorrer"
+                class="control grande"
+            >
+                CORRER
+            </button>
+
+            <button
+                id="btnDer"
+                class="control"
+            >
+                DER
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PAUSA -->
+
+    <div
+        id="pausaPanel"
+        class="modal oculto"
+    >
+
+        <div class="modal-caja">
+
+            <h2>
+                JUEGO EN PAUSA
+            </h2>
+
+            <button
+                id="btnContinuar"
+                class="btn-principal"
+            >
+                CONTINUAR
+            </button>
+
+            <button
+                id="btnReiniciarPausa"
+                class="btn-secundario"
+            >
+                REINICIAR JUEGO
+            </button>
+
+            <button
+                id="btnMenuPausa"
+                class="btn-secundario"
+            >
+                VOLVER AL MENÚ
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FINAL -->
+
+    <div
+        id="finalPanel"
+        class="modal oculto"
+    >
+
+        <div class="modal-caja">
+
+            <h2 id="finalTitulo"></h2>
+
+            <p id="finalTexto"></p>
+
+            <button
+                id="btnReintentar"
+                class="btn-principal"
+            >
+                JUGAR DE NUEVO
+            </button>
+
+            <button
+                id="btnMenuFinal"
+                class="btn-secundario"
+            >
+                VOLVER AL MENÚ
+            </button>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- THREE.JS -->
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+    }
+}
+</script>
+
+<script src="js/huida.js"></script>
+
+</body>
+</html>

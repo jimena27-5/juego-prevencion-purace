@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Memoria de Emergencia</title>
+
+    <link rel="stylesheet" href="css/parejas.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     PANTALLA INICIAL
+===================================================== -->
+
+<section id="pantallaInicio" class="pantalla-inicio">
+
+    <img
+        src="img/menu-parejas.png"
+        class="fondo-inicio"
+        alt="Memoria de Emergencia"
+    >
+
+    <div class="velo-inicio"></div>
+
+    <div class="inicio-contenido">
+
+        <div class="etiqueta-juego">
+            JUEGO 3
+        </div>
+
+        <h1>
+            MEMORIA DE EMERGENCIA
+        </h1>
+
+        <p>
+            Encuentra las parejas del kit de emergencia
+            y supera los 60 niveles.
+        </p>
+
+        <button
+            id="btnIniciar"
+            class="btn-inicio"
+        >
+            INICIO
+        </button>
+
+        <span class="texto-inicio">
+            PARA JUGAR
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     JUEGO
+===================================================== -->
+
+<main
+    id="juego"
+    class="juego oculto"
+>
+
+    <div class="velo-juego"></div>
+
+
+    <!-- =================================================
+         HUD
+    ================================================== -->
+
+    <header class="hud">
+
+        <div class="dato">
+
+            <small>NIVEL</small>
+
+            <strong id="nivelActual">
+                1 / 60
+            </strong>
+
+        </div>
+
+
+        <div class="dato">
+
+            <small>TIEMPO</small>
+
+            <strong id="tiempo">
+                02:00
+            </strong>
+
+        </div>
+
+
+        <div class="dato">
+
+            <small>PAREJAS</small>
+
+            <strong id="parejasEncontradas">
+                0 / 2
+            </strong>
+
+        </div>
+
+
+        <button
+            id="btnPausa"
+            class="btn-hud"
+        >
+            PAUSA
+        </button>
+
+
+        <button
+            id="btnLista"
+            class="btn-hud"
+        >
+            LISTA
+        </button>
+
+    </header>
+
+
+    <!-- =================================================
+         PROGRESO
+    ================================================== -->
+
+    <section class="progreso">
+
+        <div class="progreso-cabecera">
+
+            <span>
+                PROGRESO DEL NIVEL
+            </span>
+
+            <strong id="porcentaje">
+                0%
+            </strong>
+
+        </div>
+
+
+        <div class="barra">
+
+            <div
+                id="barraProgreso"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         MENSAJE
+    ================================================== -->
+
+    <div
+        id="mensajeNivel"
+        class="mensaje-nivel"
+    >
+        MEMORIZA LAS FICHAS
+    </div>
+
+
+    <!-- =================================================
+         TABLERO
+    ================================================== -->
+
+    <section
+        id="tablero"
+        class="tablero"
+    ></section>
+
+
+    <!-- =================================================
+         BOTONES INFERIORES
+    ================================================== -->
+
+    <div class="controles-abajo">
+
+        <button
+            id="btnVolverJugar"
+            class="btn-secundario"
+        >
+            VOLVER A JUGAR
+        </button>
+
+
+        <button
+            id="btnVolverMenu"
+            class="btn-secundario"
+        >
+            VOLVER AL MENÚ
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         LISTA DE RESULTADOS
+    ================================================== -->
+
+    <aside
+        id="panelLista"
+        class="panel-lista oculto"
+    >
+
+        <button
+            id="cerrarLista"
+            class="cerrar"
+        >
+            X
+        </button>
+
+        <h2>
+            LISTA DE RESULTADOS
+        </h2>
+
+        <p>
+            Aquí quedan guardados tus niveles.
+        </p>
+
+        <div
+            id="listaResultados"
+        ></div>
+
+    </aside>
+
+
+    <!-- =================================================
+         PAUSA
+    ================================================== -->
+
+    <div
+        id="panelPausa"
+        class="modal oculto"
+    >
+
+        <div class="modal-caja">
+
+            <h2>
+                JUEGO EN PAUSA
+            </h2>
+
+            <button
+                id="btnContinuar"
+                class="btn-principal"
+            >
+                CONTINUAR
+            </button>
+
+            <button
+                id="btnReiniciarPausa"
+                class="btn-secundario"
+            >
+                VOLVER A JUGAR
+            </button>
+
+            <button
+                id="btnMenuPausa"
+                class="btn-secundario"
+            >
+                VOLVER AL MENÚ
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         RESULTADO
+    ================================================== -->
+
+    <div
+        id="panelFinal"
+        class="modal oculto"
+    >
+
+        <div class="modal-caja">
+
+            <h2 id="tituloFinal">
+                NIVEL COMPLETADO
+            </h2>
+
+            <p id="textoFinal">
+            </p>
+
+            <button
+                id="btnSiguiente"
+                class="btn-principal"
+            >
+                SIGUIENTE NIVEL
+            </button>
+
+            <button
+                id="btnRepetir"
+                class="btn-secundario"
+            >
+                VOLVER A JUGAR
+            </button>
+
+            <button
+                id="btnMenuFinal"
+                class="btn-secundario"
+            >
+                VOLVER AL MENÚ
+            </button>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script src="js/parejas.js"></script>
+
+</body>
+</html>

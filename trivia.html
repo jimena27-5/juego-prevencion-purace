@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trivia de Prevención - Volcán Puracé</title>
+
+    <link rel="stylesheet" href="css/trivia.css">
+</head>
+
+<body>
+
+<main class="trivia">
+
+    <!-- FONDO -->
+    <img
+        src="img/trivia-purace.png"
+        alt=""
+        class="fondo-trivia"
+    >
+
+    <div class="oscurecer"></div>
+
+
+    <!-- ==============================
+         ENCABEZADO
+    =============================== -->
+
+    <header class="encabezado">
+
+        <div class="logo">
+            <div class="alerta">ALERTA NARANJA</div>
+            <div class="volcan">VOLCÁN PURACÉ</div>
+            <div class="subtitulo">TRIVIA DE PREVENCIÓN</div>
+        </div>
+
+
+        <div class="estadisticas">
+
+            <div class="estadistica">
+                <span>⛰️</span>
+                <div>
+                    <small>NIVEL</small>
+                    <strong id="nivel">1 / 50</strong>
+                </div>
+            </div>
+
+            <div class="estadistica">
+                <span>🪙</span>
+                <div>
+                    <small>MONEDAS</small>
+                    <strong id="monedas">50</strong>
+                </div>
+            </div>
+
+            <div class="estadistica">
+                <span>❤️</span>
+                <div>
+                    <small>VIDAS</small>
+                    <strong id="vidas">❤️❤️❤️</strong>
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==============================
+         CONTENIDO PRINCIPAL
+    =============================== -->
+
+    <section class="contenido">
+
+        <!-- PREGUNTA -->
+
+        <div class="panel-pregunta">
+
+            <button
+                id="escucharPregunta"
+                class="boton-sonido"
+                title="Escuchar pregunta">
+                🔊
+            </button>
+
+            <div class="numero-pregunta">
+                PREGUNTA <span id="numeroPregunta">1</span> DE 50
+            </div>
+
+            <h1 id="pregunta">
+                Cargando pregunta...
+            </h1>
+
+        </div>
+
+
+        <!-- RESPUESTAS -->
+
+        <div class="respuestas">
+
+            <button class="respuesta" data-opcion="A">
+                <span class="letra">A</span>
+                <span id="textoA"></span>
+            </button>
+
+            <button class="respuesta" data-opcion="B">
+                <span class="letra">B</span>
+                <span id="textoB"></span>
+            </button>
+
+            <button class="respuesta" data-opcion="C">
+                <span class="letra">C</span>
+                <span id="textoC"></span>
+            </button>
+
+            <button class="respuesta" data-opcion="D">
+                <span class="letra">D</span>
+                <span id="textoD"></span>
+            </button>
+
+        </div>
+
+
+        <!-- MENSAJE -->
+
+        <div id="mensaje" class="mensaje"></div>
+
+
+        <!-- BOTÓN SIGUIENTE -->
+
+        <button id="siguiente" class="boton-siguiente">
+            SIGUIENTE →
+        </button>
+
+    </section>
+
+
+    <!-- ==============================
+         PANEL LATERAL
+    =============================== -->
+
+    <aside class="panel-lateral">
+
+        <button id="escucharOtraVez">
+            🔊 ESCUCHAR DE NUEVO
+        </button>
+
+        <button id="listaPreguntas">
+            ☷ LISTA DE PREGUNTAS
+        </button>
+
+        <button id="usarMonedas">
+            🪙 USAR MONEDAS
+            <small>Continuar sin perder el nivel</small>
+        </button>
+
+    </aside>
+
+
+    <!-- ==============================
+         PROGRESO
+    =============================== -->
+
+    <div class="progreso-contenedor">
+
+        <span>PROGRESO</span>
+
+        <div class="barra">
+            <div id="progreso"></div>
+        </div>
+
+        <strong id="progresoTexto">1 / 50</strong>
+
+    </div>
+
+
+    <!-- VOLVER AL MENÚ -->
+
+    <button id="volverMenu" class="volver-menu">
+        🏠 VOLVER AL MENÚ
+    </button>
+
+
+    <!-- ==============================
+         VENTANA LISTA DE PREGUNTAS
+    =============================== -->
+
+    <div id="modalLista" class="modal">
+
+        <div class="modal-contenido">
+
+            <button id="cerrarLista" class="cerrar">
+                ✕
+            </button>
+
+            <h2>📋 LISTA DE PREGUNTAS</h2>
+
+            <p>
+                Tu progreso en la trivia
+            </p>
+
+            <div id="lista" class="lista"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==============================
+         PANTALLA DE DERROTA
+    =============================== -->
+
+    <div id="pantallaDerrota" class="pantalla-final">
+
+        <div class="final-card">
+
+            <div class="icono-final">💔</div>
+
+            <h2>¡MISIÓN INTERRUMPIDA!</h2>
+
+            <p>
+                Te quedaste sin vidas.
+            </p>
+
+            <strong id="nivelPerdido">
+                NIVEL 1
+            </strong>
+
+            <div class="botones-final">
+
+                <button id="reintentar">
+                    🔄 REINTENTAR
+                </button>
+
+                <button id="usarMonedasDerrota">
+                    🪙 USAR 50 MONEDAS
+                </button>
+
+                <button id="volverMenuDerrota">
+                    🏠 VOLVER AL MENÚ
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==============================
+         PANTALLA DE VICTORIA
+    =============================== -->
+
+    <div id="pantallaVictoria" class="pantalla-final">
+
+        <div class="final-card victoria">
+
+            <div class="icono-final">🏆</div>
+
+            <h2>¡TRIVIA COMPLETADA!</h2>
+
+            <p>
+                ¡Excelente trabajo!
+            </p>
+
+            <strong>
+                ¡SUPERASTE LOS 50 NIVELES!
+            </strong>
+
+            <div class="resultado-final">
+
+                <span>
+                    🏆 PUNTAJE
+                </span>
+
+                <b id="puntajeFinal">
+                    0
+                </b>
+
+            </div>
+
+            <div class="botones-final">
+
+                <button id="jugarOtraVez">
+                    🔄 VOLVER A JUGAR
+                </button>
+
+                <button id="volverMenuVictoria">
+                    🏠 VOLVER AL MENÚ
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==============================
+         SONIDOS
+    =============================== -->
+
+    <audio
+        id="sonidoCorrecto"
+        preload="auto">
+    </audio>
+
+    <audio
+        id="sonidoIncorrecto"
+        preload="auto">
+    </audio>
+
+
+</main>
+
+<script src="js/trivia.js"></script>
+
+</body>
+</html>
