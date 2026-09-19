@@ -1,0 +1,306 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #05070b;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.menu {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: #05070b;
+}
+
+.imagen-menu {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+    user-select: none;
+}
+
+
+/* =====================================
+   ZONAS DE LOS TRES JUEGOS
+===================================== */
+
+.zona {
+    position: absolute;
+
+    z-index: 10;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    padding: 0;
+}
+
+
+/* TRIVIA */
+
+.juego1 {
+    left: 25%;
+    top: 31%;
+
+    width: 20%;
+    height: 36%;
+}
+
+
+/* HUYENDO */
+
+.juego2 {
+    left: 45%;
+    top: 31%;
+
+    width: 20%;
+    height: 36%;
+}
+
+
+/* MEMORIA */
+
+.juego3 {
+    left: 65%;
+    top: 31%;
+
+    width: 20%;
+    height: 36%;
+}
+
+
+/* =====================================
+   RULETA
+===================================== */
+
+.ruleta {
+    left: 73%;
+    top: 73%;
+
+    width: 20%;
+    height: 18%;
+}
+
+
+/* =====================================
+   SALIR DEL JUEGO
+===================================== */
+
+.salir {
+    left: 86%;
+    top: 89%;
+
+    width: 13%;
+    height: 9%;
+}
+
+
+/* =====================================
+   MONEDAS
+===================================== */
+
+.contador-monedas {
+
+    position: absolute;
+
+    z-index: 30;
+
+    top: 5.5%;
+    right: 13%;
+
+    min-width: 80px;
+
+    padding: 5px 12px;
+
+    border-radius: 8px;
+
+    color: #ffd43b;
+
+    background: rgba(5, 10, 15, 0.75);
+
+    border: 1px solid rgba(255, 184, 0, 0.8);
+
+    font-size: 18px;
+
+    font-weight: 900;
+
+    text-align: center;
+
+    text-shadow:
+        0 2px 4px #000,
+        0 0 8px rgba(255, 170, 0, 0.8);
+}
+
+
+/* =====================================
+   MENSAJE DE PREMIO
+===================================== */
+
+.premio {
+
+    position: absolute;
+
+    z-index: 50;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%) scale(0);
+
+    padding: 15px 28px;
+
+    border: 2px solid #ffc400;
+
+    border-radius: 14px;
+
+    background: rgba(5, 8, 12, 0.95);
+
+    color: #ffd000;
+
+    font-size: 28px;
+
+    font-weight: 900;
+
+    text-align: center;
+
+    box-shadow:
+        0 0 30px rgba(255, 110, 0, 0.8);
+}
+
+.premio.mostrar {
+
+    animation: mostrarPremio 1.8s ease forwards;
+}
+
+
+@keyframes mostrarPremio {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0);
+    }
+
+    20% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+    }
+
+    40% {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.8);
+    }
+}
+
+
+/* =====================================
+   EFECTO AL PASAR EL MOUSE
+===================================== */
+
+.zona:hover {
+    background: rgba(255, 145, 0, 0.08);
+}
+
+
+/* =====================================
+   CELULAR
+===================================== */
+
+@media (max-width: 700px) {
+
+    .imagen-menu {
+        width: 100%;
+        height: 100%;
+
+        object-fit: contain;
+    }
+
+    .juego1 {
+        left: 24%;
+        top: 31%;
+        width: 21%;
+        height: 36%;
+    }
+
+    .juego2 {
+        left: 45%;
+        top: 31%;
+        width: 21%;
+        height: 36%;
+    }
+
+    .juego3 {
+        left: 66%;
+        top: 31%;
+        width: 20%;
+        height: 36%;
+    }
+
+    .ruleta {
+        left: 72%;
+        top: 73%;
+        width: 22%;
+        height: 18%;
+    }
+
+    .salir {
+        left: 85%;
+        top: 89%;
+        width: 14%;
+        height: 9%;
+    }
+
+    .contador-monedas {
+        right: 12%;
+        top: 5%;
+
+        font-size: 14px;
+    }
+}

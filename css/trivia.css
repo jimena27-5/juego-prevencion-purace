@@ -1,0 +1,978 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #05070b;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    font-family: inherit;
+}
+
+.trivia {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+}
+
+.fondo-trivia {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: 1;
+}
+
+.oscurecer {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.18),
+            rgba(0,0,0,.05) 55%,
+            rgba(0,0,0,.38)
+        );
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* =====================================
+   ENCABEZADO
+===================================== */
+
+.encabezado {
+    position: absolute;
+
+    top: 2%;
+    left: 3%;
+    right: 3%;
+
+    height: 15%;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 27%;
+}
+
+.alerta {
+    color: #ff7411;
+
+    font-size: clamp(20px, 2vw, 34px);
+
+    font-weight: 900;
+    font-style: italic;
+
+    text-shadow:
+        2px 2px 0 #000,
+        0 0 10px rgba(255,100,0,.6);
+}
+
+.volcan {
+    color: white;
+
+    font-size: clamp(25px, 2.6vw, 45px);
+
+    font-weight: 900;
+    font-style: italic;
+
+    text-shadow:
+        3px 3px 0 #000;
+}
+
+.subtitulo {
+    display: inline-block;
+
+    margin-top: 5px;
+
+    padding: 5px 14px;
+
+    background: #ff9d00;
+
+    color: #120900;
+
+    font-size: clamp(11px, 1vw, 17px);
+
+    font-weight: 900;
+
+    transform: skew(-12deg);
+
+    box-shadow:
+        0 4px 0 #9d3b00;
+}
+
+
+/* =====================================
+   ESTADÍSTICAS
+===================================== */
+
+.estadisticas {
+    display: flex;
+    gap: 10px;
+
+    width: 55%;
+}
+
+.estadistica {
+    flex: 1;
+
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 8px 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(4,12,20,.96),
+            rgba(9,18,27,.88)
+        );
+
+    border: 2px solid #ff8b00;
+
+    clip-path: polygon(
+        8% 0,
+        92% 0,
+        100% 22%,
+        100% 78%,
+        92% 100%,
+        8% 100%,
+        0 78%,
+        0 22%
+    );
+
+    box-shadow:
+        0 0 15px rgba(255,105,0,.25);
+}
+
+.estadistica > span {
+    font-size: 32px;
+}
+
+.estadistica small {
+    display: block;
+
+    color: #dce5ec;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+.estadistica strong {
+    display: block;
+
+    color: #ffc400;
+
+    font-size: 21px;
+
+    font-weight: 900;
+}
+
+
+/* =====================================
+   CONTENIDO
+===================================== */
+
+.contenido {
+    position: absolute;
+
+    z-index: 10;
+
+    left: 10%;
+    top: 27%;
+
+    width: 62%;
+}
+
+
+/* =====================================
+   PREGUNTA
+===================================== */
+
+.panel-pregunta {
+    position: relative;
+
+    min-height: 150px;
+
+    padding: 28px 55px 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(3,12,20,.96),
+            rgba(7,16,25,.92)
+        );
+
+    border: 3px solid #ff9d00;
+
+    clip-path: polygon(
+        3% 0,
+        97% 0,
+        100% 18%,
+        100% 82%,
+        97% 100%,
+        3% 100%,
+        0 82%,
+        0 18%
+    );
+
+    box-shadow:
+        0 0 25px rgba(255,105,0,.35);
+}
+
+.numero-pregunta {
+    color: #ffae00;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    margin-bottom: 7px;
+
+    letter-spacing: 2px;
+}
+
+.panel-pregunta h1 {
+    font-size: clamp(19px, 2vw, 32px);
+
+    line-height: 1.2;
+
+    text-align: center;
+
+    text-shadow:
+        2px 2px 3px #000;
+}
+
+.boton-sonido {
+    position: absolute;
+
+    left: 15px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    border: 2px solid #ffb000;
+
+    background: #07131e;
+
+    color: white;
+
+    font-size: 23px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================
+   RESPUESTAS
+===================================== */
+
+.respuestas {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.respuesta {
+    min-height: 95px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 12px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(3,12,20,.96),
+            rgba(8,19,29,.92)
+        );
+
+    border: 2px solid #ff8b00;
+
+    color: white;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    clip-path: polygon(
+        4% 0,
+        96% 0,
+        100% 18%,
+        100% 82%,
+        96% 100%,
+        4% 100%,
+        0 82%,
+        0 18%
+    );
+
+    transition: .2s ease;
+}
+
+.respuesta:hover {
+    transform: translateY(-3px);
+
+    border-color: #ffc400;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(25,35,42,.98),
+            rgba(14,26,35,.98)
+        );
+
+    box-shadow:
+        0 0 20px rgba(255,150,0,.4);
+}
+
+.respuesta .letra {
+    flex-shrink: 0;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            #ffb300,
+            #ed6100
+        );
+
+    color: white;
+
+    font-size: 27px;
+
+    font-weight: 900;
+}
+
+.respuesta span:last-child {
+    font-size: clamp(13px, 1.15vw, 18px);
+
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+
+/* RESPUESTA CORRECTA */
+
+.respuesta.correcta {
+    border-color: #00e676;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,100,55,.85),
+            rgba(3,35,25,.95)
+        );
+}
+
+.respuesta.correcta .letra {
+    background: #00b85c;
+}
+
+
+/* RESPUESTA INCORRECTA */
+
+.respuesta.incorrecta {
+    border-color: #ff3030;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(120,15,15,.85),
+            rgba(40,8,8,.95)
+        );
+}
+
+.respuesta.incorrecta .letra {
+    background: #e51b23;
+}
+
+
+/* =====================================
+   MENSAJE
+===================================== */
+
+.mensaje {
+    min-height: 35px;
+
+    margin-top: 8px;
+
+    text-align: center;
+
+    font-size: 18px;
+
+    font-weight: 900;
+}
+
+.mensaje.correcto {
+    color: #00ff8c;
+}
+
+.mensaje.incorrecto {
+    color: #ff5555;
+}
+
+
+/* =====================================
+   SIGUIENTE
+===================================== */
+
+.boton-siguiente {
+    display: none;
+
+    margin: 8px auto 0;
+
+    padding: 12px 35px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            #ffc400,
+            #ff7200
+        );
+
+    color: #180900;
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 0 #923500,
+        0 0 20px rgba(255,140,0,.4);
+}
+
+.boton-siguiente.visible {
+    display: block;
+}
+
+
+/* =====================================
+   PANEL LATERAL
+===================================== */
+
+.panel-lateral {
+    position: absolute;
+
+    z-index: 15;
+
+    right: 2.5%;
+    top: 32%;
+
+    width: 20%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    padding: 14px;
+
+    background:
+        rgba(2,8,14,.9);
+
+    border: 2px solid #ff7b00;
+
+    border-radius: 12px;
+}
+
+.panel-lateral button {
+    min-height: 55px;
+
+    border: 2px solid #ff9d00;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #17242e,
+            #050a0f
+        );
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+    transition: .2s;
+}
+
+.panel-lateral button:hover {
+    transform: scale(1.03);
+
+    filter: brightness(1.3);
+}
+
+.panel-lateral button small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #d4dce2;
+
+    font-size: 9px;
+}
+
+#usarMonedas {
+    border-color: #00d875;
+
+    color: #aaffd0;
+}
+
+
+/* =====================================
+   PROGRESO
+===================================== */
+
+.progreso-contenedor {
+    position: absolute;
+
+    z-index: 20;
+
+    bottom: 3.5%;
+
+    left: 24%;
+
+    width: 55%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 12px 20px;
+
+    background: rgba(3,10,15,.9);
+
+    border: 2px solid #ff9000;
+
+    border-radius: 10px;
+}
+
+.progreso-contenedor > span {
+    color: #ffc000;
+
+    font-weight: 900;
+}
+
+.barra {
+    flex: 1;
+
+    height: 15px;
+
+    overflow: hidden;
+
+    border: 1px solid #82909b;
+
+    border-radius: 8px;
+
+    background: #071019;
+}
+
+#progreso {
+    width: 2%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff6400,
+            #ffc400
+        );
+
+    transition: width .3s ease;
+}
+
+#progresoTexto {
+    color: #ffc400;
+
+    font-size: 15px;
+}
+
+
+/* =====================================
+   VOLVER AL MENÚ
+===================================== */
+
+.volver-menu {
+    position: absolute;
+
+    z-index: 30;
+
+    left: 2.5%;
+    bottom: 3.5%;
+
+    padding: 15px 24px;
+
+    border: 2px solid #ff3030;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            #3a1111,
+            #170606
+        );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+}
+
+
+/* =====================================
+   MODALES
+===================================== */
+
+.modal,
+.pantalla-final {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(0,0,0,.82);
+
+    backdrop-filter: blur(5px);
+}
+
+.modal.activo,
+.pantalla-final.activa {
+    display: flex;
+}
+
+.modal-contenido,
+.final-card {
+    position: relative;
+
+    width: min(700px, 90vw);
+
+    max-height: 85vh;
+
+    overflow: auto;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #07131d,
+            #101a22
+        );
+
+    border: 3px solid #ff9d00;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 0 45px rgba(255,110,0,.45);
+}
+
+.modal-contenido h2,
+.final-card h2 {
+    color: #ffc400;
+
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+.modal-contenido p,
+.final-card p {
+    color: #dce5eb;
+
+    margin-bottom: 20px;
+}
+
+.cerrar {
+    position: absolute;
+
+    right: 15px;
+    top: 12px;
+
+    border: none;
+
+    background: none;
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+
+/* LISTA */
+
+.lista {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 8px;
+}
+
+.lista-item {
+    padding: 9px;
+
+    border-radius: 7px;
+
+    background: #14222d;
+
+    color: white;
+
+    font-weight: 900;
+}
+
+.lista-item.actual {
+    background: #ff9000;
+
+    color: #150900;
+}
+
+.lista-item.completada {
+    background: #00a85a;
+}
+
+
+/* =====================================
+   FINAL
+===================================== */
+
+.icono-final {
+    font-size: 65px;
+
+    margin-bottom: 10px;
+}
+
+.final-card strong {
+    display: block;
+
+    color: #ffc400;
+
+    font-size: 20px;
+
+    margin: 12px;
+}
+
+.botones-final {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+.botones-final button {
+    padding: 14px;
+
+    border: 2px solid #ff9900;
+
+    border-radius: 10px;
+
+    background: #101c25;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+}
+
+.botones-final button:hover {
+    background: #263746;
+}
+
+.victoria {
+    border-color: #00d878;
+}
+
+
+/* =====================================
+   CELULAR
+===================================== */
+
+@media (max-width: 800px) {
+
+    html,
+    body {
+        overflow: auto;
+    }
+
+    .trivia {
+        min-height: 100vh;
+        height: auto;
+        padding-bottom: 30px;
+    }
+
+    .encabezado {
+        position: relative;
+
+        top: auto;
+        left: auto;
+        right: auto;
+
+        padding: 15px;
+
+        height: auto;
+
+        display: block;
+    }
+
+    .logo {
+        width: 100%;
+        text-align: center;
+    }
+
+    .estadisticas {
+        width: 100%;
+
+        margin-top: 10px;
+    }
+
+    .estadistica {
+        min-height: 55px;
+
+        padding: 5px;
+    }
+
+    .estadistica > span {
+        font-size: 20px;
+    }
+
+    .estadistica strong {
+        font-size: 14px;
+    }
+
+    .contenido {
+        position: relative;
+
+        left: auto;
+        top: auto;
+
+        width: 94%;
+
+        margin: 15px auto;
+    }
+
+    .panel-pregunta {
+        padding: 25px 15px;
+    }
+
+    .respuestas {
+        grid-template-columns: 1fr;
+    }
+
+    .panel-lateral {
+        position: relative;
+
+        right: auto;
+        top: auto;
+
+        width: 94%;
+
+        margin: 15px auto;
+    }
+
+    .progreso-contenedor {
+        position: relative;
+
+        left: auto;
+        bottom: auto;
+
+        width: 94%;
+
+        margin: 15px auto;
+    }
+
+    .volver-menu {
+        position: relative;
+
+        left: auto;
+        bottom: auto;
+
+        display: block;
+
+        margin: 15px auto;
+    }
+}
